@@ -1,10 +1,10 @@
 const config = require('../../config.json')
-
 const { onlyDevs } = require('../functions/onlyDevs.js')
+const { client } = require('../../index.js')
 
-module.exports = (client) => {
-
-    client.on('message', async (message) => {
+module.exports = {
+    name: 'message',
+    run: async(message) => {
 
         if(message.author.bot) return;
         if(!message.guild) return;
@@ -28,6 +28,6 @@ module.exports = (client) => {
         }
 
 
-    })
+    }
 
 }

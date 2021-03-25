@@ -3,6 +3,8 @@ require('dotenv').config()
 const Discord = require('discord.js')
 const client = new Discord.Client()
 
+module.exports = { client }
+
 /* Por que dois arquivos para conter itens de configuração?
 
 .env Ficaraá na host local, sendo assim, não será upado para coisas como, github, host ou coisas do gênero. Para preservar a segurança, o arquivo
@@ -26,5 +28,4 @@ try {
     console.log(e)
 
 }
-
 client.login(process.env.TOKEN)

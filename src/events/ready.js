@@ -1,9 +1,8 @@
-module.exports = (client) => {
-
-    client.on('ready', () => {
+module.exports = {
+    name: 'ready',
+    run: () => {
 
         console.log('[bot] Bot iniciado com sucesso.')
 
-    })
-
+    }
 }

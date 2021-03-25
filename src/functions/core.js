@@ -1,4 +1,3 @@
-
 const fs = require('fs')
 
 function createCore(client) {
@@ -11,15 +10,26 @@ function createCore(client) {
 
             fs.readdirSync('./src/events').forEach(x => {
                 
-                try {
+                const events = require(`../events/${x}`)
+                if(events.name) {
 
-                    require(`../../src/events/${x}`)(client)
-                    console.log(`[events] Evento carregado com sucesso, ${x}`)
+                    const emitter = (typeof events.emitter === 'string' ? client[events.emitter] : events.emitter) || client; 
 
-                } catch(e) {
+                    try {
+
+                        console.log(`[events] Evento carregado com sucesso, ${x}`)
+                        emitter['on'](events.name, (...args) => events.run(...args));
+
+                    } catch(e) {
+
+                        console.log(`[events] Ocorreu um erro ao carregar, ${x}`)
+                        console.log(e)
+
+                    }
+
+                } else {
 
                     console.log(`[events] Ocorreu um erro ao carregar, ${x}`)
-                    console.log(e)
 
                 }
                 
