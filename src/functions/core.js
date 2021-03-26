@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-function createCore(client) {
+async function createCore(client) {
 
     console.log('[core] Iniciando bot...')
     

@@ -18,14 +18,15 @@ client.aliases = new Discord.Collection()
 
 const { createCore } = require('./src/functions/core.js')
 
-try {
+createCore(client).then(() => {
 
-    createCore(client)
-    
-} catch(e) {
+    console.log('[core] Finalizando processos...')
+
+}).catch(e => {
 
     console.log('[index] Ocorreu um erro ao iniciar o CORE.')
     console.log(e)
 
-}
+})
+
 client.login(process.env.TOKEN)
